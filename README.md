@@ -4,7 +4,7 @@ Proxmox
 Projekt: Aufbau eines containerbasierten Dokumentenmanagement- und Monitoring-Systems
 Plattform: Proxmox VE auf einem alten Notebook
 
-Phase 1: Planung und Entscheidungen
+#Phase 1: Planung und Entscheidungen
 Projektziel definiert: Proxmox und virtuelle Maschinen/Container verstehen, Dienste aufsetzen.
 
 Hardware geprüft: Altes Notebook mit Proxmox VE 9.2.2, Intel i7-7500U, 15,39 GB RAM, ~94 GB SSD.
@@ -17,7 +17,7 @@ Entschieden: Dienste separat aufteilen (Datenbank, Cache, Anwendung getrennt).
 
 Entschieden: Internes Netzwerk (vmbr1) für sichere Trennung.
 
-Phase 2: Netzwerk und Container-Grundlagen
+#Phase 2: Netzwerk und Container-Grundlagen
 Internes Netzwerk erstellt: Bridge vmbr1 mit 10.10.10.1/24 in Proxmox angelegt.
 
 Container 200 (db) erstellt: Ubuntu 22.04, 2 GB RAM, IP 10.10.10.2.
@@ -28,7 +28,7 @@ Container 202 (paperless) erstellt: Ubuntu 22.04, 3 GB RAM, IP 10.10.10.4 (inter
 
 Alle Container gestartet und Status in Proxmox geprüft.
 
-Phase 3: Datenbank und Cache einrichten
+#Phase 3: Datenbank und Cache einrichten
 Container 200 (db) konfiguriert: PostgreSQL installiert.
 
 Datenbank erstellt: paperless mit eigenem Benutzer und Passwort.
@@ -45,7 +45,7 @@ Redis konfiguriert: bind 0.0.0.0 gesetzt.
 
 Redis neu gestartet.
 
-Phase 4: Paperless-ngx installieren
+#Phase 4: Paperless-ngx installieren
 Container 202 (paperless) vorbereitet: Docker und Docker Compose installiert.
 
 Verzeichnis erstellt: /opt/paperless.
@@ -64,7 +64,7 @@ Test: Paperless im Browser geöffnet, Admin-Account erstellt.
 
 Erstes Dokument hochgeladen und Verarbeitung geprüft.
 
-Phase 5: Automatisierung einrichten
+#Phase 5: Automatisierung einrichten
 Backup-Skript erstellt (paperless-db-backup.sh) im Container 200:
 
 Erstellt pg_dump der Paperless-Datenbank.
@@ -89,7 +89,7 @@ Alle 10 Minuten: Selbstheilungs-Check.
 
 Täglich 03:00 Uhr: Komplette Wartung mit Backup.
 
-Phase 6: Proxmox vzdump-Backup
+#Phase 6: Proxmox vzdump-Backup
 Backup-Job in Proxmox-GUI erstellt:
 
 Ziel: Lokaler Speicher.
@@ -104,7 +104,7 @@ Zeitplan: Täglich nachts.
 
 Backup-Job getestet und Status geprüft.
 
-Phase 7: PatchMon installieren
+#Phase 7: PatchMon installieren
 Container 203 (patchmon) erstellt: Ubuntu 22.04, 2 GB RAM, Heimnetz per DHCP.
 
 Docker und Docker Compose installiert.
@@ -121,7 +121,7 @@ Proxmox-Integration eingerichtet: Auto-Enrollment-Token erstellt, Befehl auf Pro
 
 Alle LXC-Container in PatchMon sichtbar und überwacht.
 
-Phase 8: Feste IP-Adressen vergeben
+#Phase 8: Feste IP-Adressen vergeben
 Container 202 (paperless) angepasst: net1 auf statische IP im gewünschten Netz umgestellt.
 
 Container 203 (patchmon) angepasst: net0 auf statische IP umgestellt.
@@ -130,7 +130,7 @@ Proxmox-Host angepasst: vmbr0 auf passende IP im neuen Netz umgestellt.
 
 Docker-Konfigurationen geprüft: SERVER_HOST und CORS_ORIGIN in PatchMon .env angepasst.
 
-Phase 9: Dokumentation erstellt
+#Phase 9: Dokumentation erstellt
 Architektur dokumentiert: Schichtenmodell, Container-Übersicht, Datenfluss.
 
 Software-Vergleiche erstellt: Backup, DMS, Patch-Monitoring, Automatisierung.
