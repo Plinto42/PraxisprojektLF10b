@@ -436,15 +436,6 @@ PostgreSQL	5432	TCP	nur intern (10.10.10.0/24)
 Redis	6379	TCP	nur intern (10.10.10.0/24)
 Wichtige Befehle (technisch)
 bash
-# Container-Status prüfen
-pct list
-pct status 200
-
-# In Container einloggen
-pct enter 200
-
-# Container neu starten
-pct reboot 200
 
 # Backup manuell auslösen
 /usr/local/bin/paperless-wartung.sh
