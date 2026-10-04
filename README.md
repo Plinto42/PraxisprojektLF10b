@@ -47,6 +47,9 @@ Kein NAT, kein DHCP → statische IPs für deterministische Erreichbarkeit
 
 Nur Container 202 (Paperless) und 203 (PatchMon) haben zusätzlich Zugang zum Heimnetz
 
+
+
+
 Phase 2: Netzwerk und Container-Grundlagen
 Internes Netzwerk erstellt:
 
@@ -89,6 +92,9 @@ eth1 an vmbr0, DHCP (Zugang zum Heimnetz für Browser-Zugriff)
 Hostname: paperless
 
 Alle Container gestartet und Status in Proxmox geprüft (pct list).
+
+
+
 
 Phase 3: Datenbank und Cache einrichten
 Container 200 (db) – PostgreSQL installieren:
@@ -140,6 +146,9 @@ In /etc/redis/redis.conf: bind 0.0.0.0
 Redis lauscht damit auf allen Interfaces
 
 Redis neu gestartet: systemctl restart redis-server
+
+
+
 
 Phase 4: Paperless-ngx installieren
 Container 202 (paperless) – Docker vorbereiten:
@@ -233,6 +242,9 @@ Cronjobs eingerichtet (crontab -e auf dem Proxmox-Host):
 
 Ausgabe jeweils in Log-Dateien umgeleitet (>> /var/log/... 2>&1)
 
+
+
+
 Phase 6: Proxmox vzdump-Backup
 Backup-Job in Proxmox-GUI erstellt:
 
@@ -263,6 +275,9 @@ Nutzt bei LXC den konfigurierten Modus (Snapshot/Suspend/Stop)
 Snapshot-Modus erfordert LVM-Thin, ZFS oder Ceph
 
 Restore über GUI: Speicher → Backups → Restore
+
+
+
 
 Phase 7: PatchMon installieren
 Container 203 (patchmon) erstellt:
@@ -307,6 +322,9 @@ Alle LXC-Container in PatchMon sichtbar und überwacht
 
 Anzeige: Ausstehende Updates, Kernel-Version, Uptime, Paketanzahl
 
+
+
+
 Phase 8: Feste IP-Adressen vergeben
 Container 202 (paperless) angepasst:
 
@@ -347,6 +365,9 @@ Proxmox verwaltet die Container-Netzwerkkonfiguration zentral
 Bei Ubuntu-Containern schreibt Proxmox in systemd-networkd-kompatible Dateien
 
 Nach Änderung: Container neu starten oder systemctl restart systemd-networkd im Container
+
+
+
 
 Phase 9: Dokumentation erstellt
 Architektur dokumentiert:
@@ -391,11 +412,9 @@ Stufe 2 (geplant): USB-Backup, Temperatur-Logging, E-Mail-Alerting
 
 Stufe 3 (perspektivisch): Prometheus/Grafana, Ansible, Backup-Verifikation
 
-Zeitplan festgehalten:
 
-Rückblick: 7–8 Abende à 2–3 Stunden
 
-Ausblick: 6–8 Abende für Erweiterungen
+
 
 Anleitungen und Tutorials gesammelt:
 
